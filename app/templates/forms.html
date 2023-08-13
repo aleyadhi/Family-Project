@@ -1,0 +1,30 @@
+<form action="." method="POST" hx-post="." hx-swap="outerHTML" hx-trigger="change delay:500ms, submit">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <!--{% if formset %}
+    <h1>Details:</h1>
+    {{ formset.management_form }}
+    <div id="details-form-list">
+    {% for form in formset %}
+        <div class="details-form">
+            {{ form.as_p }}
+        </div>
+    {% endfor %}
+    </div>
+    <div id="empty-form" class="hidden">
+        {{ formset.empty_form.as_p }}
+    </div>
+    <button id="add-more" type="button">
+        Add more
+    </button>
+    {% endif %}-->
+    <div class="htmx-indicator">saving...</div>
+    <input class="htmx-inverted-indicator" id="sbt" type="submit" value="Save"/>
+     {% if message %}
+    <p>
+        {{message}}
+    </p>
+    <a href="/family/{{person.slug}}" style="color: green; cursor: pointer;">{{person.name}}</a>
+    {% endif %}
+</form>

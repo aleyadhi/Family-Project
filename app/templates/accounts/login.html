@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+{% if not user.is_authenticated %}
+    <form method="POST" action="" class="frm-login center">
+        {% csrf_token %}
+        {% if error %}
+            <p>{{error}}</p>
+        {% endif %}
+        <div>
+            <input type="text" name="username" placeholder="Enter your username"/>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Enter your password"/>
+        </div>
+        <button type="submit">Login</button>
+        <p>Need a new account? Please <a href="{% url 'register' %}">Register</a></p>
+    </form>
+{% else %}
+    <p>You're already log in. Would you like to <a href="{% url 'logout' %}">Logout</a></p>
+{% endif%}
+{% endblock %}

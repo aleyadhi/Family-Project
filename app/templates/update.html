@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+update A member
+{% endblock %}
+
+{% block content %}
+<style>
+    .details-form {
+        border-bottom: 1px solid black;
+    }
+    .hidden {
+        display: None;
+    }
+</style>
+<div class='container'>
+<h1>
+    Update Member Informations:
+</h1>
+   <div>
+       {% include 'forms.html' %}
+    </div>
+    <h1>Details:</h1>
+    {% for detail in person.get_details_children %}
+        {% include 'detail-inline.html' with object=detail %}
+    {% endfor %}
+    {% if new_detail_url %}
+        <div id="detail-create">
+        </div>
+        <button hx-get="{{ new_detail_url }}" hx-trigger="click" hx-target="#detail-create" hx-swap="beforeend">
+            Add New
+        </button>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('click', (event)=> {
+        if ( event.target.id == 'add-more'){
+            add_new_form(event)
+        }
+    })
+    function add_new_form(event){
+        if (event){
+            event.preventDefault()
+        }
+        const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
+        const currentDetailsForm = document.getElementsByClassName('details-form')
+        const currentFormCount = currentDetailsForm.length
+        const formCopyTarget = document.getElementById('details-form-list')
+        const copyEmptyFormEl = document.getElementById('empty-form').cloneNode(true)
+        copyEmptyFormEl.setAttribute('class', 'details-form')
+        copyEmptyFormEl.setAttribute('id', `form-${currentFormCount}`)
+        const regex = new RegExp('__prefix__','g')
+        copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currentFormCount)
+        totalNewForms.setAttribute('value', currentFormCount + 1)
+        formCopyTarget.append(copyEmptyFormEl)
+    }
+</script>
+{% endblock %}

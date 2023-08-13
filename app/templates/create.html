@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create A member
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+<h1>
+    Enter Member Informations:
+</h1>
+    {% if not created %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create"/>
+</form>
+    {% else %}
+    <p>
+        Member was created
+    </p>
+    <a href="/family/{{object.slug}}" style="color: green; cursor: pointer;">{{object.name}}</a>
+    {% endif %}
+</div>
+{% endblock %}

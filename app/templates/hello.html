@@ -1,0 +1,13 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Hi !!{% endblock %}
+
+{% block content %}
+<div style="text-align:center;">
+    <p style="color:yellow; font-size:50px; text-shadow: 2px 2px 2px blue">Hi {{ user.username }}!</p>
+    <p style="color:green; font-size:20px; margin: auto; max-width:350px;">
+        Welcome bro in my testing website. you can move any page by above bar. Home link show you the content, 'Say Hi For Use' show this page and logout will sign out and show a message.
+    </p>
+</div>
+{% endblock %}

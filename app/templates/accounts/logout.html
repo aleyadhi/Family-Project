@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Logout
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <form method="POST" action="" class="frm-login center">
+        {% csrf_token %}
+        <p>
+           Are you sure you want to logout? 
+        </p>
+        <button type="submit">Yes, logout</button>
+    </form>
+{% else %}
+    <p>You're already log in. Would you like to <a href="/accounts/logout/">Yes, Logout</a></p>
+{% endif%}
+{% endblock %}

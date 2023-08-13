@@ -1,0 +1,12 @@
+<div class='container details'>
+    <a href="{% url 'family:family' %}" style="text-shadow: 2px 2px 5px black">Back</a>
+    <h1>
+        {{person.name}}:
+    </h1>
+    <p><span>Phone number:</span> {{person.phone}}</p>
+    <p><span>Birth date:</span> {{person.birth_date|date:"SHORT_DATE_FORMAT"}}</p>
+    <p><span>Age:</span> {{age}} years</p>
+    <p><span>relative:</span> {{person.get_relative_choices_display}}</p>
+    <p><span>Joined Date:</span> {{person.joined_date|date:"SHORT_DATE_FORMAT"}}</p>
+    <p><span>Updated Date:</span> {{person.updated|date:"SHORT_DATE_FORMAT"}}</p>
+</div>

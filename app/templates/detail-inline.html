@@ -1,0 +1,8 @@
+<div id="detail-{{ object.id }}" style="display: flex; justify-content: space-between; align-items: center; width: 300px;">
+    <p>
+        {{ object.car }} - {{ object.education }}
+    </p>
+    <button hx-trigger='click' hx-get='{{ object.get_hx_edit_url }}' hx-target='#detail-{{ object.id }}'>
+        Edit
+    </button>
+</div>

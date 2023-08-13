@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block title %}
+ Family
+{% endblock %}
+
+{% block content %}
+<div class="container">
+ {% if user.is_authenticated %} 
+    <form action="" method="GET">
+        <input type="text" name="q"/>
+        <input type="submit" value="Search"/>
+    </form>
+    <p style="color: red;">
+        <a href="{% url 'family:create' %}" style="color:blue; font-weight: bold;">Create A Family Member</a>
+    </p>
+ <ol>
+     {% for x in all_family %}    
+     <li style="font-size: 30px;">
+         <a href="{{ x.get_absolute_url }}" style="color: green; cursor: pointer;">{{x.name}} | <span style="color:black; font-weight: bold;">Author: {% if request.user == x.user %} <span class="blink">This is you ({{ x.user }})</span>{% else %} Another user {% endif %}</span></a>
+         {% if x.get_update_url %}<small><a href="{{ x.get_update_url }}">Edit</a></small>{% endif %}
+     </li>
+     {% endfor %}
+ </ol>
+{% else %}
+<h1 class="msg_to_login">
+    Please, Log in to view the content
+</h1>
+{% endif %}
+</div>
+{% endblock %}
