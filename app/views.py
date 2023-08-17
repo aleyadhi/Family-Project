@@ -98,6 +98,7 @@ def update_view(request, slug=None):
         'person': person,
         'new_detail_url': new_detail_url,
     }
+    print(new_detail_url)
     if form.is_valid():
         form.save()
         context['message'] = 'The changes have been made'
